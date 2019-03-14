@@ -111,6 +111,9 @@ public class Style implements Parcelable {
     public static final int PRIORITY_MEDIUM = 2;
     public static final int PRIORITY_LOW = 3;
 
+    public static final int BUTTON_IMAGE_LEFT = 1;
+    public static final int BUTTON_IMAGE_RIGHT = 2;
+
     // General SuperToast items
     public String message;
     public int duration;
@@ -149,6 +152,7 @@ public class Style implements Parcelable {
     public int buttonTextSize;
     public int buttonDividerColor;
     public int buttonIconResource;
+    public int buttonIconResourceDirection;
     public String buttonTag;
     public Parcelable buttonToken;
 
@@ -234,6 +238,7 @@ public class Style implements Parcelable {
         parcel.writeInt(buttonTextSize);
         parcel.writeInt(buttonDividerColor);
         parcel.writeInt(buttonIconResource);
+        parcel.writeInt(buttonIconResourceDirection);
         parcel.writeString(buttonTag);
         parcel.writeParcelable(buttonToken, 0);
 
@@ -297,6 +302,7 @@ public class Style implements Parcelable {
         this.buttonTextSize = parcel.readInt();
         this.buttonDividerColor = parcel.readInt();
         this.buttonIconResource = parcel.readInt();
+        this.buttonIconResourceDirection = parcel.readInt();
         this.buttonTag = parcel.readString();
         this.buttonToken = parcel.readParcelable(((Object) this).getClass().getClassLoader());
 

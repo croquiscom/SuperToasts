@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -490,6 +491,11 @@ public class SuperActivityToast extends SuperToast {
         return this;
     }
 
+    public SuperActivityToast setButtonIconResourceDirection(@DrawableRes int buttonIconResourceDirection) {
+        this.mStyle.buttonIconResourceDirection = buttonIconResourceDirection;
+        return this;
+    }
+
     /**
      * Returns the Button icon resource of a TYPE_BUTTON SuperActivityToast.
      *
@@ -717,11 +723,20 @@ public class SuperActivityToast extends SuperToast {
 
                     // Set an icon resource if desired
                     if(this.mStyle.buttonIconResource > 0) {
-                        button.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat
+                        Drawable drawable = ResourcesCompat
                                 .getDrawable(mContext.getResources(),
                                         this.mStyle.buttonIconResource,
-                                        mContext.getTheme()),
-                                null, null, null);
+                                        mContext.getTheme());
+
+                        switch (this.mStyle.buttonIconResourceDirection) {
+                            case Style.BUTTON_IMAGE_LEFT:
+                                button.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                                break;
+                            default:
+                                button.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+                                break;
+                        }
+
                     }
                 }
 
