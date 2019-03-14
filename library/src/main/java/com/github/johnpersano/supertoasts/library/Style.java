@@ -129,6 +129,7 @@ public class Style implements Parcelable {
     public String dismissTag;
     public Parcelable dismissToken;
     public int priorityLevel;
+    public int radius;
     protected long timestamp;
     protected boolean isSuperActivityToast;
 
@@ -175,6 +176,7 @@ public class Style implements Parcelable {
         this.width = FrameLayout.LayoutParams.WRAP_CONTENT;
         this.height = FrameLayout.LayoutParams.WRAP_CONTENT;
         this.priorityLevel = PRIORITY_MEDIUM;
+        this.radius = 4;
 
         // Message TextView items
         this.messageTypefaceStyle = Typeface.NORMAL;
@@ -215,6 +217,7 @@ public class Style implements Parcelable {
         parcel.writeString(dismissTag);
         parcel.writeParcelable(dismissToken, 0);
         parcel.writeInt(priorityLevel);
+        parcel.writeInt(radius);
         parcel.writeLong(timestamp);
         parcel.writeByte((byte) (isSuperActivityToast ? 1 : 0));
 
@@ -279,6 +282,7 @@ public class Style implements Parcelable {
         this.dismissTag = parcel.readString();
         this.dismissToken = parcel.readParcelable(((Object) this).getClass().getClassLoader());
         this.priorityLevel = parcel.readInt();
+        this.radius = parcel.readInt();
         this.timestamp = parcel.readLong();
         this.isSuperActivityToast = parcel.readByte() != 0;
 
