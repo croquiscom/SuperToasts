@@ -491,8 +491,8 @@ public class SuperActivityToast extends SuperToast {
         return this;
     }
 
-    public SuperActivityToast setButtonIconResourceDirection(@DrawableRes int buttonIconResourceDirection) {
-        this.mStyle.buttonIconResourceDirection = buttonIconResourceDirection;
+    public SuperActivityToast setButtonIconDirection(@Style.ButtonDirectin int buttonIconDirection) {
+        this.mStyle.buttonIconDirection = buttonIconDirection;
         return this;
     }
 
@@ -728,7 +728,7 @@ public class SuperActivityToast extends SuperToast {
                                         this.mStyle.buttonIconResource,
                                         mContext.getTheme());
 
-                        switch (this.mStyle.buttonIconResourceDirection) {
+                        switch (this.mStyle.buttonIconDirection) {
                             case Style.BUTTON_IMAGE_LEFT:
                                 button.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                                 break;

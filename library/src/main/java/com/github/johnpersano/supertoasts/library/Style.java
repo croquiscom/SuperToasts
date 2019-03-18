@@ -75,6 +75,10 @@ public class Style implements Parcelable {
     @IntDef(flag=true, value={PRIORITY_HIGH, PRIORITY_MEDIUM, PRIORITY_LOW})
     public @interface PriorityLevel {}
 
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({BUTTON_IMAGE_LEFT, BUTTON_IMAGE_RIGHT})
+    public @interface ButtonDirectin {}
+
     // Use int values as flags to avoid using enums
     public static final int DURATION_VERY_SHORT = 1500;
     public static final int DURATION_SHORT = 2000;
@@ -153,7 +157,7 @@ public class Style implements Parcelable {
     public int buttonTextSize;
     public int buttonDividerColor;
     public int buttonIconResource;
-    public int buttonIconResourceDirection;
+    public int buttonIconDirection;
     public String buttonTag;
     public Parcelable buttonToken;
 
@@ -241,7 +245,7 @@ public class Style implements Parcelable {
         parcel.writeInt(buttonTextSize);
         parcel.writeInt(buttonDividerColor);
         parcel.writeInt(buttonIconResource);
-        parcel.writeInt(buttonIconResourceDirection);
+        parcel.writeInt(buttonIconDirection);
         parcel.writeString(buttonTag);
         parcel.writeParcelable(buttonToken, 0);
 
@@ -306,7 +310,7 @@ public class Style implements Parcelable {
         this.buttonTextSize = parcel.readInt();
         this.buttonDividerColor = parcel.readInt();
         this.buttonIconResource = parcel.readInt();
-        this.buttonIconResourceDirection = parcel.readInt();
+        this.buttonIconDirection = parcel.readInt();
         this.buttonTag = parcel.readString();
         this.buttonToken = parcel.readParcelable(((Object) this).getClass().getClassLoader());
 
