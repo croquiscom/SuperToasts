@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -490,6 +491,11 @@ public class SuperActivityToast extends SuperToast {
         return this;
     }
 
+    public SuperActivityToast setButtonIconDirection(@Style.ButtonDirectin int buttonIconDirection) {
+        this.mStyle.buttonIconDirection = buttonIconDirection;
+        return this;
+    }
+
     /**
      * Returns the Button icon resource of a TYPE_BUTTON SuperActivityToast.
      *
@@ -689,8 +695,8 @@ public class SuperActivityToast extends SuperToast {
                 // If NOT Lollipop frame, give padding on each side
                 if (this.mStyle.frame != Style.FRAME_LOLLIPOP) {
                     this.mStyle.width = FrameLayout.LayoutParams.MATCH_PARENT;
-                    this.mStyle.xOffset = BackgroundUtils.convertToDIP(24);
-                    this.mStyle.yOffset = BackgroundUtils.convertToDIP(24);
+                    this.mStyle.xOffset = BackgroundUtils.convertToDIP(this.mStyle.xOffset);
+                    this.mStyle.yOffset = BackgroundUtils.convertToDIP(this.mStyle.yOffset);
                 }
 
                 // On a big screen device, show the SuperActivityToast on the bottom left
@@ -717,11 +723,20 @@ public class SuperActivityToast extends SuperToast {
 
                     // Set an icon resource if desired
                     if(this.mStyle.buttonIconResource > 0) {
-                        button.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat
+                        Drawable drawable = ResourcesCompat
                                 .getDrawable(mContext.getResources(),
                                         this.mStyle.buttonIconResource,
-                                        mContext.getTheme()),
-                                null, null, null);
+                                        mContext.getTheme());
+
+                        switch (this.mStyle.buttonIconDirection) {
+                            case Style.BUTTON_IMAGE_LEFT:
+                                button.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                                break;
+                            default:
+                                button.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+                                break;
+                        }
+
                     }
                 }
 

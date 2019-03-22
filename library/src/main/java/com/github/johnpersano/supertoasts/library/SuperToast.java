@@ -315,6 +315,11 @@ public class SuperToast {
         return this;
     }
 
+    public SuperToast setRadius(int radius) {
+        this.mStyle.radius = radius;
+        return this;
+    }
+
     /**
      * Returns the priority level of the SuperToast.
      *

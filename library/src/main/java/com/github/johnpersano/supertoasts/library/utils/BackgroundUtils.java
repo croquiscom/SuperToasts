@@ -46,7 +46,7 @@ public class BackgroundUtils {
         // If a frame has been manually set, return the appropriate background
         if (style.frame > 0) {
             switch (style.frame) {
-                case Style.FRAME_STANDARD: return BackgroundUtils.getStandardBackground(color);
+                case Style.FRAME_STANDARD: return BackgroundUtils.getStandardBackground(color, style.radius);
                 case Style.FRAME_KITKAT: return BackgroundUtils.getKitkatBackground(color);
                 case Style.FRAME_LOLLIPOP: return BackgroundUtils.getLollipopBackground(color);
             }
@@ -64,7 +64,7 @@ public class BackgroundUtils {
             return BackgroundUtils.getKitkatBackground(color);
         } else {
             style.frame = Style.FRAME_STANDARD;
-            return BackgroundUtils.getStandardBackground(color);
+            return BackgroundUtils.getStandardBackground(color, style.radius);
         }
     }
 
@@ -136,9 +136,9 @@ public class BackgroundUtils {
      * @param color The desired color of the GradientDrawable
      * @return A {@link GradientDrawable}
      */
-    private static GradientDrawable getStandardBackground(int color) {
+    private static GradientDrawable getStandardBackground(int color, int radius) {
         final GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setCornerRadius(BackgroundUtils.convertToDIP(4));
+        gradientDrawable.setCornerRadius(BackgroundUtils.convertToDIP(radius));
         gradientDrawable.setColor(color);
         return gradientDrawable;
     }
