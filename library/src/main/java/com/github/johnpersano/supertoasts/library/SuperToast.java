@@ -169,6 +169,8 @@ public class SuperToast {
         this.mTextView.setTypeface(this.mTextView.getTypeface(), this.mStyle.messageTypefaceStyle);
         this.mTextView.setTextColor(this.mStyle.messageTextColor);
         this.mTextView.setTextSize(this.mStyle.messageTextSize);
+        this.mTextView.setGravity(Gravity.CENTER_VERTICAL);
+        this.mTextView.setCompoundDrawablePadding(BackgroundUtils.convertToDIP(4));
         if (this.mStyle.messageIconResource > 0) {
             if (this.mStyle.messageIconPosition == Style.ICONPOSITION_LEFT) {
                 this.mTextView.setCompoundDrawablesWithIntrinsicBounds(
