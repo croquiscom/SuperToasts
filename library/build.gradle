@@ -6,6 +6,19 @@ ext {
     PUBLISH_VERSION = '2.0'
 }
 
+task deleteJar(type: Delete) {
+    delete 'libs/jars/supertoast.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('libs/jars/')
+    include('classes.jar')
+    rename('classes.jar', 'supertoast.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
+
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion 24
